@@ -53,7 +53,7 @@ For beginners, the dry vocal plus backing track workflow is the easiest and most
 ## App Preview
 
 <p align="center">
-  <img src="docs/assets/ui-check.png" alt="Mency AI Tuning Rack desktop UI" width="100%" />
+  <img src="docs/assets/app-preview.png" alt="Mency AI Tuning Rack desktop UI" width="100%" />
 </p>
 
 ## API Key Safety
