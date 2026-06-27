@@ -42,6 +42,7 @@
       "electron/**/*",
       "backend/**/*",
       "backend-dist/**/*",
+      "assets/**/*",
       ".env.example",
       "requirements.txt",
       "package.json",
@@ -50,6 +51,7 @@
       "!**/*.pyc"
     ],
     "win": {
+      "icon": "assets/mency-app-icon.ico",
       "signAndEditExecutable": false,
       "target": [
         {

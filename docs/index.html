@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mency AI Tuning Rack</title>
+    <link rel="icon" href="./assets/mency-app-icon.png" />
     <meta
       name="description"
       content="Desktop AI tuning agent for vocal recording analysis and plugin-chain suggestions."
@@ -65,14 +66,18 @@
       }
 
       .mark {
-        display: grid;
         width: 34px;
         height: 34px;
-        place-items: center;
-        border: 1px solid rgba(32, 216, 255, 0.48);
         border-radius: 8px;
-        background: linear-gradient(135deg, rgba(32, 216, 255, 0.2), rgba(54, 241, 166, 0.1));
+        border: 1px solid rgba(32, 216, 255, 0.48);
         box-shadow: 0 0 34px rgba(32, 216, 255, 0.28);
+      }
+
+      .mark img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
       }
 
       nav {
@@ -199,6 +204,13 @@
         padding: 18px 0 58px;
       }
 
+      .guide-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
       .card {
         min-height: 184px;
         border: 1px solid var(--line);
@@ -296,12 +308,18 @@
   <body>
     <header class="shell">
       <div class="brand">
-        <span class="mark">M</span>
+        <span class="mark"><img src="./assets/mency-app-icon.png" alt="" /></span>
         <span>Mency AI Tuning Rack</span>
       </div>
       <nav aria-label="Primary">
         <a href="#features">Features</a>
         <a href="#download">Download</a>
+        <a href="https://github.com/609280054-debug/Mency/blob/main/docs/INSTALL_USAGE_CN.md"
+          >中文说明</a
+        >
+        <a href="https://github.com/609280054-debug/Mency/blob/main/docs/INSTALL_USAGE_EN.md"
+          >English Guide</a
+        >
         <a href="https://github.com/609280054-debug/Mency">GitHub</a>
       </nav>
     </header>
@@ -328,8 +346,20 @@
           </div>
           <div class="meta">
             <span>Preview v0.1.0</span>
-            <span>147.6 MB</span>
+            <span>149.7 MB</span>
             <span>Unsigned Windows build</span>
+          </div>
+          <div class="guide-links">
+            <a
+              class="button secondary"
+              href="https://github.com/609280054-debug/Mency/blob/main/docs/INSTALL_USAGE_CN.md"
+              >中文安装说明</a
+            >
+            <a
+              class="button secondary"
+              href="https://github.com/609280054-debug/Mency/blob/main/docs/INSTALL_USAGE_EN.md"
+              >English Guide</a
+            >
           </div>
         </div>
 
@@ -368,7 +398,7 @@
             <h2>Download The Preview Build</h2>
             <p>
               SHA256:
-              <code>FAE89047ACBCFE05EA30B16B110FBE2E69A118630A5C4494A45C8595D8C86A2D</code>
+              <code>8429DA53973F7F82F328920D1FA2C31D3F641C656323AF34A6D97FE0BFF1FB51</code>
             </p>
           </div>
           <a
