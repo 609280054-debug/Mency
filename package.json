@@ -47,6 +47,7 @@
       "requirements.txt",
       "package.json",
       "!**/.env",
+      "!assets/mency-app-icon-option-*.png",
       "!**/__pycache__/**",
       "!**/*.pyc"
     ],

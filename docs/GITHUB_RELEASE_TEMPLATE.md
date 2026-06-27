@@ -1,4 +1,4 @@
-# Mency AI Tuning Rack v0.1.0 Preview
+﻿# Mency AI Tuning Rack v0.1.0 Preview
 
 First public Windows preview of Mency AI Tuning Rack.
 
@@ -32,8 +32,8 @@ AI Tuning Rack.exe
 
 ```text
 ZIP: AI-Tuning-Rack-win-x64.zip
-Size: 149,697,003 bytes
-SHA256: 8429DA53973F7F82F328920D1FA2C31D3F641C656323AF34A6D97FE0BFF1FB51
+Size: 149,657,400 bytes
+SHA256: F72A69B9B002D16F662843536EAEAA31A8F61D09A9506E0C10DED5884A6A32C1
 ```
 
 ## Notes
