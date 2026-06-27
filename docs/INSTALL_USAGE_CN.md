@@ -22,17 +22,28 @@ Mency AI Tuning Rack 是一个 Windows 桌面调音辅助工具。
 
 https://609280054-debug.github.io/Mency/
 
-点击 `Download for Windows`。
+点击 `Download Installer` 下载推荐的 Windows 安装器。
 
-你也可以直接下载这个文件：
+你也可以直接下载安装器：
+
+https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/Mency-AI-Tuning-Rack-Setup-0.1.0.exe
+
+如果你不想安装，也可以下载免安装 ZIP：
 
 https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/AI-Tuning-Rack-win-x64.zip
 
-下载完成后，你会得到一个 ZIP 压缩包。
+普通用户建议下载安装器。
 
 ## 3. 安装和启动
 
-目前是免安装预览版，不需要安装程序。
+推荐使用安装器：
+
+1. 找到下载好的 `Mency-AI-Tuning-Rack-Setup-0.1.0.exe`
+2. 双击运行安装器
+3. 选择安装位置
+4. 安装完成后，从桌面快捷方式或开始菜单启动
+
+如果你下载的是 ZIP 免安装版：
 
 1. 找到下载好的 `AI-Tuning-Rack-win-x64.zip`
 2. 右键这个 ZIP 文件
@@ -235,9 +246,9 @@ API Key: 你的 API Key
 
 第一次使用时，建议这样做：
 
-1. 下载 ZIP
-2. 解压
-3. 双击 `AI Tuning Rack.exe`
+1. 下载安装器
+2. 安装软件
+3. 从桌面或开始菜单启动
 4. 填 DeepSeek API Key
 5. 上传一段 20 到 40 秒的干声 WAV
 6. 上传对应伴奏 WAV

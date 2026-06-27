@@ -6,7 +6,7 @@
 
 **A Windows desktop AI tuning agent for vocal recording, dry-vocal analysis, and plugin-chain suggestions.**
 
-[![Download](https://img.shields.io/badge/Download-Windows%20Preview-20d8ff?style=for-the-badge)](https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/AI-Tuning-Rack-win-x64.zip)
+[![Download](https://img.shields.io/badge/Download-Windows%20Installer-20d8ff?style=for-the-badge)](https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/Mency-AI-Tuning-Rack-Setup-0.1.0.exe)
 [![Website](https://img.shields.io/badge/Website-GitHub%20Pages-36f1a6?style=for-the-badge)](https://609280054-debug.github.io/Mency/)
 [![Release](https://img.shields.io/badge/Release-v0.1.0%20Preview-5a7dff?style=for-the-badge)](https://github.com/609280054-debug/Mency/releases/tag/v0.1.0-preview)
 
@@ -16,10 +16,12 @@ Mency AI Tuning Rack helps singers, producers, and home-studio users turn a dry 
 
 - Download page: https://609280054-debug.github.io/Mency/
 - Latest release: https://github.com/609280054-debug/Mency/releases/tag/v0.1.0-preview
-- Windows ZIP: https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/AI-Tuning-Rack-win-x64.zip
+- Windows installer: https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/Mency-AI-Tuning-Rack-Setup-0.1.0.exe
+- Portable ZIP: https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/AI-Tuning-Rack-win-x64.zip
 
 ```text
-SHA256: F72A69B9B002D16F662843536EAEAA31A8F61D09A9506E0C10DED5884A6A32C1
+Installer SHA256: A8696A3CFA3A5D2FCB508866A3951E2F0A851CDD61F4587AC649208A45664593
+Portable ZIP SHA256: C5813D1020902C837A91F536DF3D8B06DABDA55A8BD2F70A7CCACA820D23D5E1
 ```
 
 ## What It Can Do
@@ -34,9 +36,9 @@ SHA256: F72A69B9B002D16F662843536EAEAA31A8F61D09A9506E0C10DED5884A6A32C1
 
 ## Quick Start
 
-1. Download `AI-Tuning-Rack-win-x64.zip`.
-2. Extract the ZIP file.
-3. Run `AI Tuning Rack.exe`.
+1. Download `Mency-AI-Tuning-Rack-Setup-0.1.0.exe`.
+2. Run the installer.
+3. Launch Mency AI Tuning Rack from the desktop shortcut or Start Menu.
 4. Enter your own API key in the model settings area.
 5. Upload a dry vocal WAV and a backing WAV, or start real-time monitoring.
 6. Type your vocal goal.

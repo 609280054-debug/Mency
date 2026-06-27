@@ -22,17 +22,28 @@ Open the download page:
 
 https://609280054-debug.github.io/Mency/
 
-Click `Download for Windows`.
+Click `Download Installer` for the recommended Windows installer.
 
-You can also download the ZIP directly:
+You can also download the installer directly:
+
+https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/Mency-AI-Tuning-Rack-Setup-0.1.0.exe
+
+If you prefer a portable version, download the ZIP:
 
 https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/AI-Tuning-Rack-win-x64.zip
 
-After downloading, you should have a ZIP file.
+Most users should choose the installer.
 
 ## 3. Install And Start
 
-This preview version is portable. There is no installer yet.
+Recommended installer flow:
+
+1. Find `Mency-AI-Tuning-Rack-Setup-0.1.0.exe`
+2. Double-click the installer
+3. Choose the install location
+4. Launch the app from the desktop shortcut or Start Menu
+
+Portable ZIP flow:
 
 1. Find `AI-Tuning-Rack-win-x64.zip`
 2. Right-click the ZIP file
@@ -234,9 +245,9 @@ Use the dry vocal plus backing track upload method first. It is the easiest meth
 
 For your first test:
 
-1. Download the ZIP
-2. Extract it
-3. Run `AI Tuning Rack.exe`
+1. Download the installer
+2. Install the app
+3. Launch it from the desktop shortcut or Start Menu
 4. Enter your DeepSeek API key
 5. Upload a 20 to 40 second dry vocal WAV
 6. Upload the matching backing track WAV

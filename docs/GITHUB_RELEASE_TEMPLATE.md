@@ -4,7 +4,7 @@ First public Windows preview of Mency AI Tuning Rack.
 
 ## Download
 
-Download `AI-Tuning-Rack-win-x64.zip`, extract it, then run:
+Download `Mency-AI-Tuning-Rack-Setup-0.1.0.exe`, run it, then launch:
 
 ```text
 AI Tuning Rack.exe
@@ -32,9 +32,13 @@ AI Tuning Rack.exe
 ## File Verification
 
 ```text
-ZIP: AI-Tuning-Rack-win-x64.zip
-Size: 149,657,400 bytes
-SHA256: F72A69B9B002D16F662843536EAEAA31A8F61D09A9506E0C10DED5884A6A32C1
+Installer: Mency-AI-Tuning-Rack-Setup-0.1.0.exe
+Size: 109,868,903 bytes
+SHA256: A8696A3CFA3A5D2FCB508866A3951E2F0A851CDD61F4587AC649208A45664593
+
+Portable ZIP: AI-Tuning-Rack-win-x64.zip
+Size: 149,716,381 bytes
+SHA256: C5813D1020902C837A91F536DF3D8B06DABDA55A8BD2F70A7CCACA820D23D5E1
 ```
 
 ## Notes
