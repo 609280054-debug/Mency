@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mency AI Tuning Rack</title>
+    <meta
+      name="description"
+      content="Desktop AI tuning agent for vocal recording analysis and plugin-chain suggestions."
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #070b12;
+        --panel: rgba(13, 22, 35, 0.82);
+        --panel-strong: rgba(18, 31, 48, 0.94);
+        --text: #edf7ff;
+        --muted: #9fb3c8;
+        --line: rgba(129, 199, 255, 0.2);
+        --cyan: #20d8ff;
+        --blue: #5a7dff;
+        --green: #36f1a6;
+        --shadow: 0 26px 90px rgba(0, 0, 0, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 12% 18%, rgba(32, 216, 255, 0.17), transparent 34%),
+          radial-gradient(circle at 76% 4%, rgba(90, 125, 255, 0.18), transparent 34%),
+          linear-gradient(145deg, #060910 0%, #0b1220 46%, #07131c 100%);
+        color: var(--text);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        letter-spacing: 0;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+      }
+
+      .mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 1px solid rgba(32, 216, 255, 0.48);
+        border-radius: 8px;
+        background: linear-gradient(135deg, rgba(32, 216, 255, 0.2), rgba(54, 241, 166, 0.1));
+        box-shadow: 0 0 34px rgba(32, 216, 255, 0.28);
+      }
+
+      nav {
+        display: flex;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      nav a {
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+        gap: 34px;
+        align-items: center;
+        padding: 42px 0 52px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .pulse {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 18px rgba(54, 241, 166, 0.9);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 720px;
+        font-size: clamp(44px, 8vw, 82px);
+        line-height: 0.96;
+      }
+
+      .lede {
+        margin: 22px 0 0;
+        max-width: 600px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 0 18px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .button.primary {
+        background: linear-gradient(135deg, var(--cyan), var(--green));
+        color: #031017;
+        box-shadow: 0 16px 44px rgba(32, 216, 255, 0.24);
+      }
+
+      .button.secondary {
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .shot {
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .shot::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        pointer-events: none;
+        box-shadow: inset 0 0 80px rgba(32, 216, 255, 0.1);
+      }
+
+      .shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        padding: 18px 0 58px;
+      }
+
+      .card {
+        min-height: 184px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 22px;
+        background: var(--panel-strong);
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+
+      .card p,
+      .card li {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .card ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .download {
+        border-top: 1px solid var(--line);
+        padding: 36px 0 44px;
+      }
+
+      .download-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: center;
+      }
+
+      .download h2 {
+        margin: 0 0 8px;
+        font-size: 26px;
+      }
+
+      .download p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      code {
+        color: #d9fbff;
+        overflow-wrap: anywhere;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 24px 0 34px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 920px) {
+        .hero,
+        .download-row {
+          grid-template-columns: 1fr;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          display: none;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .shell {
+          width: min(100% - 24px, 1180px);
+        }
+
+        .hero {
+          padding-top: 22px;
+        }
+
+        h1 {
+          font-size: 42px;
+        }
+
+        .actions,
+        .button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="shell">
+      <div class="brand">
+        <span class="mark">M</span>
+        <span>Mency AI Tuning Rack</span>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#download">Download</a>
+        <a href="https://github.com/609280054-debug/Mency">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero shell">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Windows preview release</div>
+          <h1>Mency AI Tuning Rack</h1>
+          <p class="lede">
+            A desktop AI tuning agent that listens to dry vocals and backing tracks, then
+            returns a professional plugin-chain plan with parameter suggestions for common DAW
+            workflows.
+          </p>
+          <div class="actions">
+            <a
+              class="button primary"
+              href="https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/AI-Tuning-Rack-win-x64.zip"
+              >Download for Windows</a
+            >
+            <a class="button secondary" href="https://github.com/609280054-debug/Mency"
+              >View Source</a
+            >
+          </div>
+          <div class="meta">
+            <span>Preview v0.1.0</span>
+            <span>147.6 MB</span>
+            <span>Unsigned Windows build</span>
+          </div>
+        </div>
+
+        <figure class="shot" aria-label="Mency AI Tuning Rack app screenshot">
+          <img src="./assets/ui-check.png" alt="Mency AI Tuning Rack desktop interface" />
+        </figure>
+      </section>
+
+      <section id="features" class="grid shell">
+        <article class="card">
+          <h2>Analyze Singing Takes</h2>
+          <p>
+            Use dry vocal plus backing track files, or monitor a live DAW playback path when
+            exporting is inconvenient.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Build Mix Decisions</h2>
+          <p>
+            Generate vocal tuning plans with cleanup, pitch, EQ, compression, de-essing, space,
+            automation, and final check stages.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Bring Your Own Model</h2>
+          <p>
+            Connect DeepSeek or another OpenAI-compatible API through base URL, model name, and
+            API key settings.
+          </p>
+        </article>
+      </section>
+
+      <section id="download" class="download">
+        <div class="download-row shell">
+          <div>
+            <h2>Download The Preview Build</h2>
+            <p>
+              SHA256:
+              <code>FAE89047ACBCFE05EA30B16B110FBE2E69A118630A5C4494A45C8595D8C86A2D</code>
+            </p>
+          </div>
+          <a
+            class="button primary"
+            href="https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/AI-Tuning-Rack-win-x64.zip"
+            >Download ZIP</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell">
+      Built for Studio One 6/7/8 workflows and generic VST plugin-chain planning.
+    </footer>
+  </body>
+</html>
