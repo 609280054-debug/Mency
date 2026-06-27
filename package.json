@@ -1,0 +1,64 @@
+{
+  "name": "ai-tuning-advisor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Windows realtime AI tuning agent for voice tuning, DAWs, racks, and VST plugin chains.",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "backend": ".venv\\Scripts\\python.exe -m uvicorn backend.app:app --host 127.0.0.1 --port 8765 --reload",
+    "frontend": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "build:backend": "powershell -ExecutionPolicy Bypass -File scripts\\build-backend.ps1",
+    "package:win": "pnpm run build && pnpm run build:backend && electron-builder --win dir --x64 && powershell -ExecutionPolicy Bypass -File scripts\\package-zip.ps1",
+    "check:release": "powershell -ExecutionPolicy Bypass -File scripts\\check-release.ps1",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "lucide-react": "^0.468.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "concurrently": "^9.1.2",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.aituningrack.desktop",
+    "productName": "AI Tuning Rack",
+    "directories": {
+      "output": "release"
+    },
+    "asar": false,
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "backend/**/*",
+      "backend-dist/**/*",
+      ".env.example",
+      "requirements.txt",
+      "package.json",
+      "!**/.env",
+      "!**/__pycache__/**",
+      "!**/*.pyc"
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  }
+}
