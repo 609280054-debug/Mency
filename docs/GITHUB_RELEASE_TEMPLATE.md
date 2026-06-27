@@ -25,8 +25,9 @@ AI Tuning Rack.exe
 
 ## Guides
 
-- Chinese: `docs/INSTALL_USAGE_CN.md`
-- English: `docs/INSTALL_USAGE_EN.md`
+- Chinese: https://github.com/609280054-debug/Mency/blob/main/docs/INSTALL_USAGE_CN.md
+- English: https://github.com/609280054-debug/Mency/blob/main/docs/INSTALL_USAGE_EN.md
+- Download page: https://609280054-debug.github.io/Mency/
 
 ## File Verification
 

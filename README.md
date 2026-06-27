@@ -1,35 +1,75 @@
+<p align="center">
+  <img src="docs/assets/readme-hero.png" alt="Mency AI Tuning Rack hero banner" width="100%" />
+</p>
+
 # Mency AI Tuning Rack
 
-Mency AI Tuning Rack is a Windows desktop AI tuning assistant for vocal recording workflows.
+**A Windows desktop AI tuning agent for vocal recording, dry-vocal analysis, and plugin-chain suggestions.**
 
-It can listen to a dry vocal and backing track, analyze the basic audio features, and ask an OpenAI-compatible model to produce a practical tuning plan: plugin chain, starting parameters, listening checks, and follow-up adjustment advice.
+[![Download](https://img.shields.io/badge/Download-Windows%20Preview-20d8ff?style=for-the-badge)](https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/AI-Tuning-Rack-win-x64.zip)
+[![Website](https://img.shields.io/badge/Website-GitHub%20Pages-36f1a6?style=for-the-badge)](https://609280054-debug.github.io/Mency/)
+[![Release](https://img.shields.io/badge/Release-v0.1.0%20Preview-5a7dff?style=for-the-badge)](https://github.com/609280054-debug/Mency/releases/tag/v0.1.0-preview)
+
+Mency AI Tuning Rack helps singers, producers, and home-studio users turn a dry vocal plus backing track into a practical tuning plan. It analyzes the audio, then asks an OpenAI-compatible model to generate plugin-chain guidance, starting parameters, listening checks, and follow-up adjustment ideas.
 
 ## Download
 
-- Website: https://609280054-debug.github.io/Mency/
-- Release: https://github.com/609280054-debug/Mency/releases/tag/v0.1.0-preview
+- Download page: https://609280054-debug.github.io/Mency/
+- Latest release: https://github.com/609280054-debug/Mency/releases/tag/v0.1.0-preview
 - Windows ZIP: https://github.com/609280054-debug/Mency/releases/download/v0.1.0-preview/AI-Tuning-Rack-win-x64.zip
+
+```text
+SHA256: F72A69B9B002D16F662843536EAEAA31A8F61D09A9506E0C10DED5884A6A32C1
+```
+
+## What It Can Do
+
+- Analyze dry vocal WAV files and backing-track WAV files
+- Monitor a real-time Windows audio input
+- Generate a professional-style vocal tuning workflow
+- Suggest EQ, compression, de-essing, saturation, reverb, delay, and final-check steps
+- Support Studio One 6/7/8 style workflows
+- Output generic VST chains for Cubase, FL Studio, Ableton Live, and other DAWs
+- Connect to DeepSeek or another OpenAI-compatible model API
+
+## Quick Start
+
+1. Download `AI-Tuning-Rack-win-x64.zip`.
+2. Extract the ZIP file.
+3. Run `AI Tuning Rack.exe`.
+4. Enter your own API key in the model settings area.
+5. Upload a dry vocal WAV and a backing WAV, or start real-time monitoring.
+6. Type your vocal goal.
+7. Generate the tuning plan.
+8. Apply the suggested chain inside your DAW.
+
+For beginners, the dry vocal plus backing track workflow is the easiest and most reliable path.
 
 ## User Guides
 
 - 中文安装与使用说明: [docs/INSTALL_USAGE_CN.md](docs/INSTALL_USAGE_CN.md)
 - English installation and usage guide: [docs/INSTALL_USAGE_EN.md](docs/INSTALL_USAGE_EN.md)
 
-## What It Does
+## App Preview
 
-- Real-time audio input monitoring
-- Dry vocal WAV + backing WAV analysis
-- AI tuning plan generation
-- OpenAI-compatible model settings
-- DeepSeek default configuration
-- Studio One 6/7/8 workflow targets
-- Generic VST plugin-chain output for other DAWs
+<p align="center">
+  <img src="docs/assets/ui-check.png" alt="Mency AI Tuning Rack desktop UI" width="100%" />
+</p>
 
-## Important API Key Note
+## API Key Safety
 
-The public release does not include a paid API key. Each user needs to enter their own model API key inside the app.
+The public release does **not** include a paid API key.
 
-The app stores local settings in a local `.env` file after first launch. That file is ignored by Git and is not included in the release package.
+Each user needs to enter their own model API key inside the app. Local settings are stored on the user's computer and are not committed to this repository.
+
+The repository ignores `.env`, and the release package includes only `.env.example`.
+
+## Current Limits
+
+- This preview build is unsigned, so Windows may show an unknown-publisher warning.
+- The app gives tuning suggestions; it does not automatically control your DAW or plugins.
+- WAV upload is the safest file-based analysis workflow for this preview.
+- Real-time monitoring depends on your Windows audio routing, audio interface, or virtual audio cable setup.
 
 ## Development
 
