@@ -119,6 +119,9 @@ function App() {
         if (!alive) return;
         const nextDevices = data.devices ?? [];
         setDevices(nextDevices);
+        if (nextDevices.length > 0) {
+          setDeviceIndex((current) => (current === "" ? nextDevices[0].index : current));
+        }
         setBackendReady(true);
         setDeviceStatus(nextDevices.length > 0 ? "\u8bf7\u9009\u62e9\u8f93\u5165\u8bbe\u5907" : "\u6ca1\u6709\u68c0\u6d4b\u5230\u53ef\u7528\u8f93\u5165\u8bbe\u5907");
       } catch {
