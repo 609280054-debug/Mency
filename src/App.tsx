@@ -96,6 +96,8 @@ function App() {
   const [analyzingFiles, setAnalyzingFiles] = useState(false);
   const [generatingPlan, setGeneratingPlan] = useState(false);
   const [input, setInput] = useState("");
+  const [backendReady, setBackendReady] = useState(false);
+  const [deviceStatus, setDeviceStatus] = useState("\u6b63\u5728\u8fde\u63a5\u672c\u5730\u540e\u7aef...");
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -104,28 +106,64 @@ function App() {
   ]);
 
   useEffect(() => {
-    fetch(`${backendUrl}/devices`)
-      .then((res) => res.json())
-      .then((data) => setDevices(data.devices ?? []))
-      .catch(() => {
-        setMessages((prev) => [
-          ...prev,
-          { role: "system", text: "后端暂未启动。请先运行 scripts\\dev.ps1。" }
-        ]);
-      });
+    let alive = true;
+    let attempts = 0;
+    let timer: number | undefined;
+
+    async function loadDevices() {
+      attempts += 1;
+      try {
+        const res = await fetch(`${backendUrl}/devices`);
+        if (!res.ok) throw new Error(`Device request failed: ${res.status}`);
+        const data = await res.json();
+        if (!alive) return;
+        const nextDevices = data.devices ?? [];
+        setDevices(nextDevices);
+        setBackendReady(true);
+        setDeviceStatus(nextDevices.length > 0 ? "\u8bf7\u9009\u62e9\u8f93\u5165\u8bbe\u5907" : "\u6ca1\u6709\u68c0\u6d4b\u5230\u53ef\u7528\u8f93\u5165\u8bbe\u5907");
+      } catch {
+        if (!alive) return;
+        setBackendReady(false);
+        setDeviceStatus(attempts < 20 ? "\u6b63\u5728\u542f\u52a8\u672c\u5730\u540e\u7aef..." : "\u540e\u7aef\u542f\u52a8\u5931\u8d25\uff0c\u8bf7\u91cd\u65b0\u6253\u5f00\u5e94\u7528");
+        timer = window.setTimeout(loadDevices, 1500);
+      }
+    }
+
+    loadDevices();
+
+    return () => {
+      alive = false;
+      if (timer) window.clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
-    fetch(`${backendUrl}/config/status`)
-      .then((res) => res.json())
-      .then((data) => {
+    let alive = true;
+    let timer: number | undefined;
+
+    async function loadConfigStatus() {
+      try {
+        const res = await fetch(`${backendUrl}/config/status`);
+        if (!res.ok) throw new Error(`Config request failed: ${res.status}`);
+        const data = await res.json();
+        if (!alive) return;
         setConfigStatus(data);
         setBaseUrlInput(data.base_url ?? "https://api.deepseek.com");
         setModelInput(data.model ?? "deepseek-v4-pro");
-      })
-      .catch(() => setConfigStatus(null));
-  }, []);
+      } catch {
+        if (!alive) return;
+        setConfigStatus(null);
+        timer = window.setTimeout(loadConfigStatus, 1500);
+      }
+    }
 
+    loadConfigStatus();
+
+    return () => {
+      alive = false;
+      if (timer) window.clearTimeout(timer);
+    };
+  }, []);
   useEffect(() => {
     if (!listening || deviceIndex === "") return;
     const ws = new WebSocket(`${backendUrl.replace("http", "ws")}/ws/analyze?device=${deviceIndex}`);
@@ -290,8 +328,11 @@ function App() {
 
         <label className="field">
           <span>监听输入</span>
-          <select value={deviceIndex} onChange={(event) => setDeviceIndex(Number(event.target.value))}>
-            <option value="">选择设备</option>
+          <select
+            value={deviceIndex}
+            onChange={(event) => setDeviceIndex(event.target.value === "" ? "" : Number(event.target.value))}
+          >
+            <option value="">{deviceStatus}</option>
             {devices.map((device) => (
               <option key={device.index} value={device.index}>
                 {device.name}
@@ -312,7 +353,7 @@ function App() {
         </label>
 
         <div className="button-row">
-          <button disabled={deviceIndex === "" || listening} onClick={() => setListening(true)} title="开始监听">
+          <button disabled={!backendReady || deviceIndex === "" || listening} onClick={() => setListening(true)} title="开始监听">
             <Play size={18} />
             开始
           </button>
