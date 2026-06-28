@@ -1,17 +1,28 @@
+import os
+import shutil
 from functools import lru_cache
 from pathlib import Path
+
 from dotenv import load_dotenv
-import os
 
 ROOT = Path(__file__).resolve().parents[1]
-load_dotenv(ROOT / ".env")
-ENV_PATH = ROOT / ".env"
+CONFIG_DIR = Path(os.getenv("MENCY_CONFIG_DIR", ROOT))
+CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+ENV_PATH = CONFIG_DIR / ".env"
+EXAMPLE_PATH = ROOT / ".env.example"
+
+if not ENV_PATH.exists() and EXAMPLE_PATH.exists():
+    shutil.copyfile(EXAMPLE_PATH, ENV_PATH)
+
+load_dotenv(ENV_PATH, override=True)
 
 
 class Settings:
-    external_llm_base_url = os.getenv("EXTERNAL_LLM_BASE_URL", "https://api.deepseek.com")
-    external_llm_api_key = os.getenv("EXTERNAL_LLM_API_KEY", "")
-    external_llm_model = os.getenv("EXTERNAL_LLM_MODEL", "deepseek-v4-pro")
+    def __init__(self) -> None:
+        self.external_llm_base_url = os.getenv("EXTERNAL_LLM_BASE_URL", "https://api.deepseek.com")
+        self.external_llm_api_key = os.getenv("EXTERNAL_LLM_API_KEY", "")
+        self.external_llm_model = os.getenv("EXTERNAL_LLM_MODEL", "deepseek-v4-pro")
+        self.env_path = str(ENV_PATH)
 
 
 @lru_cache
@@ -23,8 +34,8 @@ def set_env_values(values: dict[str, str]) -> None:
     lines: list[str] = []
     if ENV_PATH.exists():
         lines = ENV_PATH.read_text(encoding="utf-8").splitlines()
-    elif (ROOT / ".env.example").exists():
-        lines = (ROOT / ".env.example").read_text(encoding="utf-8").splitlines()
+    elif EXAMPLE_PATH.exists():
+        lines = EXAMPLE_PATH.read_text(encoding="utf-8").splitlines()
 
     seen: set[str] = set()
     next_lines: list[str] = []

@@ -56,6 +56,7 @@ def config_status():
         "has_deepseek_key": bool(settings.external_llm_api_key),
         "base_url": settings.external_llm_base_url,
         "model": settings.external_llm_model,
+        "env_path": settings.env_path,
     }
 
 

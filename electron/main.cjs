@@ -43,6 +43,8 @@ function startBackend() {
   const root = getAppRoot();
   const backend = getBackendCommand();
   ensureEnvFile();
+  const configDir = path.join(app.getPath("userData"), "config");
+  fs.mkdirSync(configDir, { recursive: true });
   backendProcess = spawn(
     backend.command,
     backend.args,
@@ -51,6 +53,7 @@ function startBackend() {
       windowsHide: true,
       env: {
         ...process.env,
+        MENCY_CONFIG_DIR: configDir,
         PYTHONUTF8: "1"
       }
     }
