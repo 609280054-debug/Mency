@@ -10,7 +10,7 @@
     "frontend": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
     "build:backend": "powershell -ExecutionPolicy Bypass -File scripts\\build-backend.ps1",
-    "package:win": "pnpm run build && pnpm run build:backend && electron-builder --win --x64 && powershell -ExecutionPolicy Bypass -File scripts\\package-zip.ps1",
+    "package:win": "pnpm run build && pnpm run build:backend && electron-builder --win dir --x64 && powershell -ExecutionPolicy Bypass -File scripts\\stamp-win-icon.ps1 && electron-builder --prepackaged release\\win-unpacked --win nsis --x64 && powershell -ExecutionPolicy Bypass -File scripts\\package-zip.ps1",
     "check:release": "powershell -ExecutionPolicy Bypass -File scripts\\check-release.ps1",
     "typecheck": "tsc --noEmit"
   },
